@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 secrets = {
-  'agent_token' => 'token1234567890'
+  'agent_token_file' => '/vagrant/secret'
 }
 
 SERVICES = {
@@ -40,7 +40,7 @@ Vagrant.configure('2') do |config|
   config.vm.define SERVICES['server'][:hostname] do |server|
     configure_machine(server, 'server', { 'mem' => 2048, 'cpu' => 2 })
     server.vm.provision 'shell', env: {
-      'K3S_AGENT_TOKEN' => secrets['agent_token']
+      'K3S_AGENT_TOKEN_FILE' => secrets['agent_token_file']
     }, inline: 'sh /home/vagrant/k3s-install.sh'
   end
 
@@ -48,8 +48,8 @@ Vagrant.configure('2') do |config|
   config.vm.define SERVICES['worker'][:hostname] do |worker|
     configure_machine(worker, 'worker', { 'mem' => 512, 'cpu' => 1 })
     worker.vm.provision 'shell', env: {
-      'K3S_TOKEN' => secrets['agent_token'],
+      'K3S_TOKEN_FILE' => secrets['agent_token_file'],
       'K3S_URL' => "https://#{SERVICES['server'][:ip]}:6443"
-    }, inline: 'sh /home/vagrant/k3s-install.sh'
+    }, inline: 'echo $K3S_TOKEN_FILE; sh /home/vagrant/k3s-install.sh'
   end
 end
