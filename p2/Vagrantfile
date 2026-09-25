@@ -1,0 +1,43 @@
+# frozen_string_literal: true
+
+BOX = {
+  image: 'bento/ubuntu-24.04',
+  version: '202510.26.0',
+  name: 'tblochetS',
+  provider: {
+    cpu: 4,
+    mem: 4096
+  }.freeze,
+  network: {
+    addr: '192.168.56.110'
+  }.freeze
+}.freeze
+
+Vagrant.configure('2') do |config|
+  config.vm.box = BOX[:image]
+  config.vm.box_version = BOX[:version]
+
+  config.vm.provision 'shell', name: 'install-k3s', inline: <<-SHELL
+  curl -sfL https://get.k3s.io -o /home/vagrant/k3s-install.sh
+  sh /home/vagrant/k3s-install.sh --write-kubeconfig-mode 0644
+  SHELL
+
+
+  config.vm.provision 'shell', name: 'setup-ingress', inline: <<-SHELL
+  k3s kubectl create ingress ingress \
+  --rule='app1.com/*=app-one:http' \
+  --rule='app2.com/*=app-two:http'\
+  --rule='app3.com/*=app-three:http' \
+  --default-backend=app-three:http \
+  -o yaml
+  SHELL
+
+  config.vm.hostname = "#{BOX[:name]}.local"
+  config.vm.network 'private_network', ip: BOX[:network][:addr]
+  config.vm.provider 'virtualbox' do |v|
+    v.customize ['modifyvm', :id, '--name', BOX[:name]]
+    v.memory = BOX[:provider][:mem]
+    v.cpus = BOX[:provider][:cpu]
+    v.gui = false
+  end
+end
