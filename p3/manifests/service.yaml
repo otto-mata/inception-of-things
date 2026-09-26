@@ -4,7 +4,7 @@ metadata:
     name: playground
 spec:
     ports:
-        - port: 8888
-          targetPort: 80
+        - port: 80
+          targetPort: 8888
     selector:
         app: playground
