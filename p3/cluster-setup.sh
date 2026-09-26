@@ -23,8 +23,8 @@ kubectl patch configmap argocd-cmd-params-cm \
 	--type=merge \
 	-p '{"data": { "server.insecure": "true" }}'
 
-kubectl create ingress guestbook-ingress \
-    --rule='guestbook.local/*=guestbook-ui:80' \
+kubectl create ingress playground-ingress \
+    --rule='playground.local/*=playground:80' \
     -n dev
 
 
@@ -44,7 +44,7 @@ server_ip=`kubectl get services/traefik \
 
 printf "\nservices/traefik address: %s\n" "$server_ip"
 
-echo "$server_ip  argocd.local guestbook.local" | tee -a /etc/hosts
+echo "$server_ip  argocd.local playground.local" | tee -a /etc/hosts
 
 printf 'waiting for administrative password generation...'
 until argocd admin initial-password -n argocd 2>/dev/null >/dev/null
@@ -59,13 +59,13 @@ argocd admin initial-password \
 printf '\n'
 
 printf 'waiting for argocd server to be joinable...'
-until nc -z "$server_ip" 443
+until nc -z argocd.local 443
 do
 	sleep 1
 	printf '.'
 done
 printf '\nLogin to argocd:\n'
-argocd login "$server_ip" --grpc-web
+argocd login argocd.local --grpc-web
 
 printf 'Update admin password:\n'
 argocd account update-password
