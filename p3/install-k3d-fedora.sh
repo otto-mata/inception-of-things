@@ -3,6 +3,11 @@ set -eu
 
 test `id -u` -eq 0 || (printf "Must be root to run install script\n" && exit 1)
 
+if [ -f /var/run/docker.sock ]
+then
+	ln -sv /run/podman/podman.sock /var/run/docker.sock
+fi
+
 if ! command -v k3d
 then
 	curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
@@ -15,17 +20,13 @@ then
 		set -x
 		echo 'service_timeout=0' > /etc/containers/containers.conf.d/timeout.conf
 		set +x
-		ln -sv /run/podman/podman.sock /var/run/docker.sock
-
 		# Podman's Docker compat layer may try to fetch logs using journald
-		# 
 		# Related: https://github.com/Glyndor/podup/pull/1872
 		# > The Podman 5 VM already moved container logs to k8s-file
 		# > because Fedora 44's journald binding cannot open its library
 		# > (every logs request came back 500 unable to open a handle
 		# > to the library). The events backend reads the same journal
 		# > through the same binding and was left on journald.
-		# 
 		# We explicitely tell Podman to use k8s-file for logs
 		printf '[containers]\nlog_driver = "k8s-file"' >> /etc/containers/containers.conf
 	fi
