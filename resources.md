@@ -16,3 +16,8 @@
 - [Ingress | Kubernetes](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Deployments | Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - [charmed-kubernetes/kubernetes-samples: Sample images for testing Kubernetes.](https://github.com/charmed-kubernetes/kubernetes-samples)
+
+### Part 3
+
+- [Getting Started - Argo CD - Declarative GitOps CD for Kubernetes](https://argo-cd.readthedocs.io/en/latest/getting_started/)
+- [Ingress Configuration - Argo CD - Declarative GitOps CD for Kubernetes](https://argo-cd.readthedocs.io/en/latest/operator-manual/ingress/)
