@@ -1,0 +1,14 @@
+#helm install postgres oci://registry-1.docker.io/bitnamicharts/postgresql   -n gitlab -f manifests/gitlab/postgres.values.yaml
+auth:
+    username: gitlab
+    password: changeme
+    database: gitlabhq_production
+primary:
+    initdb:
+        scripts:
+            extensions.sql: |
+                \c gitlabhq_production
+                CREATE EXTENSION IF NOT EXISTS pg_trgm;
+                CREATE EXTENSION IF NOT EXISTS btree_gist;
+                CREATE EXTENSION IF NOT EXISTS plpgsql;
+                CREATE EXTENSION IF NOT EXISTS amcheck;

@@ -1,0 +1,9 @@
+# helm install redis oci://registry-1.docker.io/bitnamicharts/redis   -n gitlab -f manifests/gitlab/redis.values.yaml
+architecture: standalone
+auth:
+    enabled: true
+    password: changeme
+master:
+    persistence:
+        enabled: true
+        size: 8Gi

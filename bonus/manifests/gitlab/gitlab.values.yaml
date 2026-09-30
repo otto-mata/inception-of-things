@@ -1,0 +1,51 @@
+# helm repo add gitlab https://charts.gitlab.io/
+# helm install gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds
+global:
+    gatewayApi:
+        enabled: false
+        installEnvoy: false
+        configureCertmanager: false
+    hosts:
+        domain: iot.example
+    ingress:
+        configureCertmanager: false
+    psql:
+        host: postgres-postgresql.gitlab.svc.cluster.local
+        port: 5432
+        database: gitlabhq_production
+        username: gitlab
+        password:
+            secret: gitlab-postgres-password
+            key: password
+    redis:
+        host: redis-master.gitlab.svc.cluster.local
+        port: 6379
+        auth:
+            enabled: true
+            secret: gitlab-redis-secret
+            key: redis-password
+    registry:
+        enabled: false
+    appConfig:
+        uploads:
+            bucket: gitlab-uploads
+            connection:
+                secret: gitlab-object-store
+                key: connection
+        artifacts:
+            enabled: false
+        lfs:
+            enabled: false
+        packages:
+            enabled: false
+registry:
+    enabled: false
+installCertmanager: false
+certmanager-issuer:
+    email: admin@iot.example
+nginx-ingress:
+    enabled: true
+
+gitlab:
+    toolbox:
+        enabled: false
