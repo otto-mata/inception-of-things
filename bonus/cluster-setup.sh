@@ -74,10 +74,11 @@ kubectl config set-context \
 	--current \
 	--namespace=argocd
 
-argocd app create iot-part3 \
+argocd app create iot-bonus \
 	--repo https://github.com/otto-mata/inception-of-things.git \
-	--path p3/manifests/ \
+	--path bonus/manifests/playground \
 	--dest-server https://kubernetes.default.svc \
-	--dest-namespace dev
+	--dest-namespace dev \
+	--revision bonus
 
-argocd app sync iot-part3
+argocd app sync iot-bonus

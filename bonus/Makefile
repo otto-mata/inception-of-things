@@ -13,4 +13,13 @@ $(ARGOCD_BIN_PATH):
 down:
 	k3d cluster destroy
 
+install-requirements:
+	dnf install -y podman-compose podman-docker podman-machine curl coreutils
+
+install-completions:
+	@echo 'source <(k3d completion bash)' >> $(HOME)/.bashrc
+	@echo 'source <(kubectl completion bash)' >> $(HOME)/.bashrc
+	@echo 'source <(helm completion bash)' >> $(HOME)/.bashrc
+	@echo 'Run `source ~/.bashrc` load completions'
+
 .PHONY: up down
