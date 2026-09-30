@@ -1,0 +1,188 @@
+  164  2026-09-30 19:50:03: helm search hub podinfo
+  165  2026-09-30 19:50:03: helm completion
+  166  2026-09-30 19:50:03: helm completion bash
+  167  2026-09-30 19:50:03: make install-completions
+  168  2026-09-30 19:50:03: source ~/.bashrc
+  169  2026-09-30 19:50:03: helm search hub podinfo
+  170  2026-09-30 19:50:03: helm search repo
+  171  2026-09-30 19:50:03: helm
+  172  2026-09-30 19:50:03: helm search hub podinfo
+  173  2026-09-30 19:50:03: helm search hub podinfo --color always
+  174  2026-09-30 19:50:03: helm search hub podinfo
+  175  2026-09-30 19:50:03: helm install my-podinfo podinfo
+  176  2026-09-30 19:50:03: helm install my-podinfo helm/podinfo
+  177  2026-09-30 19:50:03: helm show chart oci://ghcr.io/stefanprodan/charts/podinfo --version 6.11.2
+  178  2026-09-30 19:50:03: helm show chart oci://ghcr.io/stefanprodan/charts/podinfo --version 6.15.0
+  179  2026-09-30 19:50:03: helm install my-podinfo oci://ghcr.io/stefanprodan/charts/podinfo --version 6.15.0
+  180  2026-09-30 19:50:03: curl localhost:9898
+  181  2026-09-30 19:50:03: kubectl get pods -n argocd
+  182  2026-09-30 19:50:03: kubectl get all -n argocd
+  183  2026-09-30 19:50:03: kubectl config set-context 	--current 	--namespace=default
+  184  2026-09-30 19:50:03: kubectl -n argocd delete svc/my-podinfo
+  185  2026-09-30 19:50:03: helm install my-podinfo oci://ghcr.io/stefanprodan/charts/podinfo --version 6.15.0
+  186  2026-09-30 19:50:03: kubectl get all
+  187  2026-09-30 19:50:03: kubectl get all -A
+  188  2026-09-30 19:50:03: kubectl -n argocd delete replicasets.apps my-podinfo-d6b57c97b
+  189  2026-09-30 19:50:03: kubectl -n argocd delete deployments.apps my-podinfo
+  190  2026-09-30 19:50:03: kubectl config set-context --current --namespace=dev
+  191  2026-09-30 19:50:03: helm install my-podinfo oci://ghcr.io/stefanprodan/charts/podinfo --version 6.15.0
+  192  2026-09-30 19:50:03: kubectl get all -A
+  193  2026-09-30 19:50:03: kubectl create ingress my-podinfo-ingress --rule='my-podinfo/*=my-podinfo:9898' -n dev
+  194  2026-09-30 19:50:03: kubectl get all -A
+  195  2026-09-30 19:50:03: curl -H 'host: my-podinfo' localhost
+  196  2026-09-30 19:50:03: curl -H 'host: my-podinfo' localhost:8080
+  197  2026-09-30 19:50:03: kubectl create namespace gitlab
+  198  2026-09-30 19:50:03: kubectl config set-context --current --namespace=gitlab
+  199  2026-09-30 19:50:03: helm search rub postgres
+  200  2026-09-30 19:50:03: helm search hub postgres
+  201  2026-09-30 19:50:03: helm repo add postgres https://raw.githubusercontent.com/hansehe/postgres-helm/master/helm/charts/postgres
+  202  2026-09-30 19:50:03: helm install postgres postgres/postgres
+  203  2026-09-30 19:50:03: helm install postgres oci://registry-1.docker.io/bitnamicharts/postgresql -n gitlab
+  204  2026-09-30 19:50:03: helm uninstall postgres
+  205  2026-09-30 19:50:03: helm install postgres oci://registry-1.docker.io/bitnamicharts/postgresql -n gitlab
+  206  2026-09-30 19:50:03: echo $(kubectl get secret --namespace gitlab postgres-postgresql -o jsonpath="{.data.postgres-password}" | base64 -d)
+  207  2026-09-30 19:50:03: kubectl create ingress gitlab-ingress --help
+  208  2026-09-30 19:50:03: kubectl create ingress gitlab-ingress -n gitlab --rule='postgres.local:5432/*=postgres:5432' --dry-run=client
+  209  2026-09-30 19:50:03: kubectl create ingress gitlab-ingress -n gitlab --rule='postgres.local/*=postgres:5432' --dry-run=client
+  210  2026-09-30 19:50:03: kubectl create ingress gitlab-ingress -n gitlab --rule='postgres.local/*=postgres:5432' --dry-run=client -o yaml
+  211  2026-09-30 19:50:03: kubectl create configmap test -n gitlab --from-literal=5432=postgres:5432 --dry-run client -o yaml
+  212  2026-09-30 19:50:03: kubectl create configmap test -n gitlab --from-literal=5432=postgres:5432 --dry-run=client -o yaml
+  213  2026-09-30 19:50:03: kubectl apply -f manifests/gitlab/ingresstcp.yaml
+  214  2026-09-30 19:50:03: kubectl delete ingressroutetcps.traefik.io postgres
+  215  2026-09-30 19:50:03: helm uninstall postgres
+  216  2026-09-30 19:50:03: kubectl get all
+  217  2026-09-30 19:50:03: helm install postgres oci://registry-1.docker.io/bitnamicharts/postgresql   -n gitlab -f postgres-values.yaml
+  218  2026-09-30 19:50:03: helm install postgres oci://registry-1.docker.io/bitnamicharts/postgresql   -n gitlab -f manifests/gitlab/postgres.values.yaml
+  219  2026-09-30 19:50:03: helm show values postgres/postgres | grep -i -B2 -A2 'database\|db\|user'
+  220  2026-09-30 19:50:03: kubectl get secrets postgres-postgresql
+  221  2026-09-30 19:50:03: kubectl get secrets postgres-postgresql --hep
+  222  2026-09-30 19:50:03: kubectl get secrets postgres-postgresql --help
+  223  2026-09-30 19:50:03: kubectl get secret --namespace gitlab postgres-postgresql -o jsonpath="{.data.password}"
+  224  2026-09-30 19:50:03: kubectl get secret --namespace gitlab postgres-postgresql -o jsonpath="{.data.password}" | base64 -d
+  225  2026-09-30 19:50:03: kubectl create secret generic gitlab-postgres-password -n gitlab --from-literal=password=changeme
+  226  2026-09-30 19:50:03: helm install gitlab gitlab/gitlab
+  227  2026-09-30 19:50:03:   --set global.psql.host=postgres
+  228  2026-09-30 19:50:03:   --set global.psql.password.secret=gitlab-postgresql-password
+  229  2026-09-30 19:50:03:   --set global.psql.password.key=postgres-password
+  230  2026-09-30 19:50:03: helm install gitlab gitlab/gitlab
+  231  2026-09-30 19:50:03:   --set global.psql.host=psql.example
+  232  2026-09-30 19:50:03:   --set global.psql.password.secret=gitlab-postgresql-password
+  233  2026-09-30 19:50:03:   --set global.psql.password.key=postgres-password
+  234  2026-09-30 19:50:03:   helm install gitlab gitlab/gitlab   --set global.psql.host=psql.example   --set global.psql.password.secret=gitlab-postgresql-password   --set global.psql.password.key=postgres-password
+  235  2026-09-30 19:50:03: history
+  236  2026-09-30 19:50:03: helm install postgres oci://registry-1.docker.io/bitnamicharts/redis   -n gitlab
+  237  2026-09-30 19:50:03: helm install redis oci://registry-1.docker.io/bitnamicharts/redis   -n gitlab
+  238  2026-09-30 19:50:03: kubectl create secret generic redis-password -n gitlab --from-literal=password=changeme
+  239  2026-09-30 19:50:03: kubectl delete secrets redis-password
+  240  2026-09-30 19:50:03: helm uninstall redis
+  241  2026-09-30 19:50:03: helm install redis oci://registry-1.docker.io/bitnamicharts/redis   -n gitlab -f redis-values.yaml
+  242  2026-09-30 19:50:03: helm install redis oci://registry-1.docker.io/bitnamicharts/redis   -n gitlab -f manifests/gitlab/redis.values.yaml
+  243  2026-09-30 19:50:03: kubectl create secret generic gitlab-redis-secret -n gitlab   --from-literal=redis-password=changeme
+  244  2026-09-30 19:50:03: helm repo add gitlab https://charts.gitlab.io/
+  245  2026-09-30 19:50:03: helm repo update
+  246  2026-09-30 19:50:03: helm install gitlab gitlab/gitlab -n gitlab -f manifests/gitlab/gitlab.values.yaml
+  247  2026-09-30 19:50:03: helm uninstall postgres
+  248  2026-09-30 19:50:03: helm uninstall redis
+  249  2026-09-30 19:50:03: kubectl delete namespaces gitlab
+  250  2026-09-30 19:50:03: kubectl create namespace gitlab --dry-run=client -o yaml | kubectl apply -f -
+  251  2026-09-30 19:50:03: kubectl create secret generic gitlab-postgres-password -n gitlab --from-literal=password=changeme
+  252  2026-09-30 19:50:03: kubectl create secret generic gitlab-redis-secret -n gitlab --from-literal=redis-password=changeme
+  253  2026-09-30 19:50:03: helm install gitlab gitlab/gitlab -n gitlab -f gitlab-values.yaml
+  254  2026-09-30 19:50:03: helm install gitlab gitlab/gitlab -n gitlab -f manifests/gitlab/gitlab.values.yaml
+  255  2026-09-30 19:50:03: kubectl get crd gateways.gateway.networking.k8s.io   -o jsonpath='{.metadata.annotations}{"\n"}'
+  256  2026-09-30 19:50:03: kubectl get crd gateways.gateway.networking.k8s.io   -o jsonpath='{.metadata.annotations}{"\n"}' | jq
+  257  2026-09-30 19:50:03: helm install gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds
+  258  2026-09-30 19:50:03: helm list -n gitlab -a
+  259  2026-09-30 19:50:03: helm list -n gitlab
+  260  2026-09-30 19:50:03: helm install gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds
+  261  2026-09-30 19:50:03: kubectl create secret generic gitlab-postgres-password -n gitlab --from-literal=password=changeme
+  262  2026-09-30 19:50:03: kubectl create secret generic gitlab-redis-secret -n gitlab --from-literal=redis-password=changeme
+  263  2026-09-30 19:50:03: helm install postgres oci://registry-1.docker.io/bitnamicharts/postgresql -n gitlab -f manifests/gitlab/postgres.values.yaml
+  264  2026-09-30 19:50:03: helm install redis oci://registry-1.docker.io/bitnamicharts/redis -n gitlab -f manifests/gitlab/redis.values.yaml
+  265  2026-09-30 19:50:03: helm install gitlab gitlab/gitlab -n gitlab -f manifests/gitlab/gitlab.values.yaml --skip-crds
+  266  2026-09-30 19:50:03: helm repo add minio https://charts.min.io/
+  267  2026-09-30 19:50:03: helm install minio minio/minio -n gitlab -f minio-values.yaml
+  268  2026-09-30 19:50:03: helm install minio minio/minio -n gitlab -f manifests/gitlab/minio.values.yaml
+  269  2026-09-30 19:50:03: helm uninstall minio
+  270  2026-09-30 19:50:03: helm install minio minio/minio -n gitlab -f manifests/gitlab/minio.values.yaml
+  271  2026-09-30 19:50:03: shutdown now
+  272  2026-09-30 19:50:03: htop
+  273  2026-09-30 19:50:03: top
+  274  2026-09-30 19:50:03: df -h
+  275  2026-09-30 19:50:03: du -h /
+  276  2026-09-30 19:50:03: dnf install htop
+  277  2026-09-30 19:50:03: htop
+  278  2026-09-30 19:50:11: k3d cluster start
+  279  2026-09-30 19:50:36: helm uninstall minio
+  280  2026-09-30 19:52:06: helm install gitlab gitlab/gitlab -n gitlab -f manifests/gitlab/gitlab.values.yaml --skip-crds
+  281  2026-09-30 19:52:10: cd bonus
+  282  2026-09-30 19:52:11: helm install gitlab gitlab/gitlab -n gitlab -f manifests/gitlab/gitlab.values.yaml --skip-crds
+  283  2026-09-30 19:53:44: helm install minio minio/minio -n gitlab -f manifests/gitlab/minio.values.yaml
+  284  2026-09-30 19:54:49: helm uninstall minio
+  285  2026-09-30 19:54:53: helm install minio minio/minio -n gitlab -f manifests/gitlab/minio.values.yaml
+  286  2026-09-30 20:01:35: helm uninstall minio
+  287  2026-09-30 20:01:51: kubectl delete pvc -n gitlab -l app=minio
+  288  2026-09-30 20:01:57: git clone https://git.deuxfleurs.fr/Deuxfleurs/garage
+  289  2026-09-30 20:02:05: cd garage/script/helm
+  290  2026-09-30 20:02:32: ls
+  291  2026-09-30 20:02:41: nano values.yaml
+  292  2026-09-30 20:02:51: helm install garage ./garage -n gitlab -f values.yaml
+  293  2026-09-30 20:02:57: kubectl get pods -n gitlab
+  294  2026-09-30 20:03:03: kubectl get pods -n gitlab -w
+  295  2026-09-30 20:03:15: kubectl exec -it -n gitlab garage-0 -- ./garage status
+  296  2026-09-30 20:03:24: kubectl exec -it -n gitlab garage-0 -- ./garage layout assign -z dc1 -c 4G <node-id>
+  297  2026-09-30 20:03:24: kubectl exec -it -n gitlab garage-0 -- ./garage layout apply --version 1
+  298  2026-09-30 20:03:47: kubectl exec -it -n gitlab garage-0 -- ./garage layout assign -z dc1 -c 4G 153e3d0854fddc6a
+  299  2026-09-30 20:03:50: kubectl exec -it -n gitlab garage-0 -- ./garage layout apply --version 1
+  300  2026-09-30 20:03:59: kubectl exec -it -n gitlab garage-0 -- ./garage bucket create gitlab-uploads
+  301  2026-09-30 20:03:59: kubectl exec -it -n gitlab garage-0 -- ./garage key create gitlab-key
+  302  2026-09-30 20:04:00: kubectl exec -it -n gitlab garage-0 -- ./garage bucket allow --read --write --owner gitlab-uploads --key gitlab-key
+  303  2026-09-30 20:04:11: cat > connection.yaml <<'EOF'
+provider: AWS
+region: garage
+aws_access_key_id: <KEY_ID>
+aws_secret_access_key: <SECRET_KEY>
+aws_signature_version: 4
+host: garage.gitlab.svc.cluster.local
+endpoint: "http://garage.gitlab.svc.cluster.local:3900"
+path_style: true
+EOF
+
+  304  2026-09-30 20:04:11: kubectl create secret generic gitlab-object-store -n gitlab --from-file=connection=connection.yaml
+  305  2026-09-30 20:05:22: helm template gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds | grep -m5 -i 'postgres-postgresql\|redis-master'
+  306  2026-09-30 20:05:30: cd ../..
+  307  2026-09-30 20:05:31: cd..
+  308  2026-09-30 20:05:33: cd ..
+  309  2026-09-30 20:05:35: helm template gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds | grep -m5 -i 'postgres-postgresql\|redis-master'
+  310  2026-09-30 20:05:49: helm install gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds
+  311  2026-09-30 20:06:54: helm template eg-crds oci://docker.io/envoyproxy/gateway-crds-helm   --set 'crds.gatewayAPI.enabled=false'   --set 'crds.envoyGateway.enabled=true'   | kubectl apply --server-side -f -
+  312  2026-09-30 20:07:10: kubectl get crd gateways.gateway.networking.k8s.io   -o jsonpath='{.metadata.annotations.gateway\.networking\.k8s\.io/bundle-version}{"\n"}'
+  313  2026-09-30 20:07:36: helm list -n gitlab -a
+  314  2026-09-30 20:07:38: helm list -n gitlab --all
+  315  2026-09-30 20:07:40: helm list -n gitlab -A
+  316  2026-09-30 20:08:14: helm template gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds > /tmp/out.yaml && echo OK
+  317  2026-09-30 20:08:14: grep -c 'gateway.envoyproxy.io' /tmp/out.yaml   # should print 0
+  318  2026-09-30 20:08:19: helm install gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds
+  319  2026-09-30 20:09:26: helm list -n gitlab
+  320  2026-09-30 20:09:39: helm uninstall gitlab
+  321  2026-09-30 20:09:51: helm template gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds > /tmp/out.yaml
+  322  2026-09-30 20:09:52: grep -nE '^\s+(name|secretName):\s*(""|'"''"')?\s*$' /tmp/out.yaml
+  323  2026-09-30 20:10:51: sed -n '4535,4570p' /tmp/out.yaml
+  324  2026-09-30 20:11:43: helm install gitlab gitlab/gitlab -n gitlab   -f manifests/gitlab/gitlab.values.yaml --skip-crds
+  325  2026-09-30 20:15:59: kubectl get pods
+  326  2026-09-30 20:16:08: kubectl get all
+  327  2026-09-30 20:16:41: kubectl logs service/gitlab-nginx-ingress-controller
+  328  2026-09-30 20:16:58: kubectl get all
+  329  2026-09-30 20:17:54: kubectl get pods
+  330  2026-09-30 20:18:03: kubectl logs service/gitlab-nginx-ingress-controller
+  331* 2026-09-30 20:18:09: kubectl get
+  332  2026-09-30 20:18:51: kubectl get service/gitlab-nginx-ingress-controller
+  333  2026-09-30 20:19:05: history | grep "helm install"
+  334  2026-09-30 20:20:01: history | grep "helm"
+  335  2026-09-30 20:20:41: history | grep "helm repo"
+  336  2026-09-30 20:21:16: history
+  337  2026-09-30 20:21:23: history -h
+  338  2026-09-30 20:21:28: man history
+  339  2026-09-30 20:22:08: HISTTIMEFORMAT="%F %T:" history
+  340  2026-09-30 20:22:21: HISTTIMEFORMAT="%F %T: " history
+  341  2026-09-30 20:23:28: HISTTIMEFORMAT="%F %T: " history > session.history
