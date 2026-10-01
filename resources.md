@@ -21,3 +21,7 @@
 
 - [Getting Started - Argo CD - Declarative GitOps CD for Kubernetes](https://argo-cd.readthedocs.io/en/latest/getting_started/)
 - [Ingress Configuration - Argo CD - Declarative GitOps CD for Kubernetes](https://argo-cd.readthedocs.io/en/latest/operator-manual/ingress/)
+
+### Bonus
+
+- [Set admin password on install · Issue #829 · argoproj/argo-cd](https://github.com/argoproj/argo-cd/issues/829)
