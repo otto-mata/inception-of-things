@@ -1,0 +1,36 @@
+#cloud-config
+hostname: vm
+users:
+  - name: fedora
+    ssh_authorized_keys:
+      - {{ data.ssh_key }}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: wheel
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - git
+  - make
+  - podman-compose
+  - podman-docker
+  - podman-machine
+  - curl
+  - coreutils
+
+bootcmd:
+  - mkdir -p /opt/iot/installers
+
+runcmd:
+{% for file in data.files %}
+  - {{ file.path }}
+{% endfor %}
+
+write_files:
+{% for file in data.files %}
+  - path: {{ file.path }}
+    content: {{ file.content }}
+    owner: {{ file.owner }}
+    permissions: "{{ file.permissions }}"
+{% endfor %}
