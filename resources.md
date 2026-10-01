@@ -9,7 +9,9 @@
 - [Vagrant](https://developer.hashicorp.com/vagrant)
 
 ### Part 1
-
+ 
+ - [Tutorials | Vagrant | HashiCorp Developer](https://developer.hashicorp.com/vagrant/tutorials)
+ 
 ### Part 2
 
 - [Service | Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/)
