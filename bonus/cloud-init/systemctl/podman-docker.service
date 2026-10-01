@@ -1,0 +1,12 @@
+[Unit]
+Description=Create symlink /var/run/docker.sock -> /run/podman/podman.sock
+Requires=podman.socket
+After=podman.socket
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ln -sfn podman/podman.sock /var/run/docker.sock
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
